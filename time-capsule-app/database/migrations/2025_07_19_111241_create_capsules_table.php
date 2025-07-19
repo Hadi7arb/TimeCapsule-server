@@ -1,0 +1,48 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     */
+    public function up(): void
+    {
+        Schema::create('capsules', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')
+                  ->constrained()
+                  ->onDelete('cascade');
+            $table->string('title');
+            $table->text('message');
+            $table->DateTime('reveal_date');
+            $table->string('mood', 20)->index();
+            $table->decimal('latitude', 10, 7);
+            $table->decimal('longitude', 10, 7);
+            $table->ipAddress('ip_address');
+            $table->boolean('is_revealed');
+            $table->string('color');
+            $table->string('cover_image')->nullable();
+            $table->string('image')->nullable();
+            $table->string('voice_note')->nullable();
+            $table->string('privacy', 20)->default('private')->index();
+            $table->string('country');
+            $table->boolean('surprise_mode');
+            $table->softDeletes();
+            $table->timestamps();
+        });
+
+        
+    }
+
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
+    {
+        Schema::dropIfExists('capsules');
+    }
+};
