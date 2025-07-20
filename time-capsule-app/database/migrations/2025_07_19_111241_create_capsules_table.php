@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('capsules', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')
-                  ->constrained()
-                  ->onDelete('cascade');
+            $table->integer("user_id");
             $table->string('title');
             $table->text('message');
             $table->DateTime('reveal_date');
@@ -23,7 +21,7 @@ return new class extends Migration
             $table->decimal('latitude', 10, 7);
             $table->decimal('longitude', 10, 7);
             $table->ipAddress('ip_address');
-            $table->boolean('is_revealed');
+            $table->boolean('is_revealed')->index();
             $table->string('color');
             $table->string('cover_image')->nullable();
             $table->string('image')->nullable();
