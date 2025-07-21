@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('capsules', function (Blueprint $table) {
             $table->id();
-            $table->integer("user_id");
+            $table->unsignedBigInteger("user_id");
             $table->string('title');
             $table->text('message');
             $table->DateTime('reveal_date');
@@ -24,12 +24,18 @@ return new class extends Migration
             $table->boolean('is_revealed')->index();
             $table->string('color');
             $table->string('cover_image')->nullable();
-            $table->string('image')->nullable();
-            $table->string('voice_note')->nullable();
             $table->string('privacy', 20)->default('private')->index();
             $table->string('country');
             $table->boolean('surprise_mode');
             $table->softDeletes();
+            $table->timestamps();
+        });
+
+        Schema::create('media', function (Blueprint $table){
+            $table->id();
+            $table->unsignedBigInteger("capsule_id");
+            $table->string("media_type");
+            $table->string("media_url");
             $table->timestamps();
         });
 

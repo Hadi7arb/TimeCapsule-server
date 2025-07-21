@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services\Common;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -46,4 +47,11 @@ class AuthService
         
         
     }
+
+    static function logout(Request $request){
+       Auth::logout();
+       
+    }
+
+    
 }

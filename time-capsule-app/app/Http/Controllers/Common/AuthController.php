@@ -22,6 +22,12 @@ class AuthController extends Controller
         $user = AuthService::register($request);
         return $this->responseJSON($user);
     }
+    public function logout(Request $request)
+    {
+        $user = AuthService::logout($request);
+        return $this->responseJSON($user, "Successfully logged out");
+        
+    }
 
     
 }
