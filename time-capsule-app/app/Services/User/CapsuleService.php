@@ -55,7 +55,7 @@ class CapsuleService
         $capsule->color = $request->color;
         $capsule->privacy = $request->privacy;
         $capsule->surprise_mode = $request->surprise_mode;
-        $capsule->is_revealed = $request->is_revealed;
+        $capsule->is_revealed = Carbon::parse($request->reveal_date)->isPast();
         $capsule->reveal_date = $request->reveal_date;
         $capsule->ip_address = $userIp;
         $capsule->latitude = $location->latitude;
