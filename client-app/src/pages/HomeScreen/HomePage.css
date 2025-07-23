@@ -1,0 +1,122 @@
+
+.homepage-container {
+    display: flex;
+    flex-direction: column; 
+    min-height: 100vh; 
+   background-image: url('../../assets/bg.png'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+.content-section {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+
+.card-wrapper {
+    display: flex;
+    gap: 40px; 
+    max-width: 1200px; 
+    width: 100%;
+    justify-content: center;
+
+    
+    flex-wrap: wrap;
+}
+
+
+.feature-card {
+    background-color: #FFFDE7; 
+    padding: 30px; 
+    border-radius: 12px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); 
+    flex: 1; 
+    min-width: 300px; 
+    max-width: 450px; 
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column; 
+    align-items: flex-start;
+}
+
+.feature-card .card-title {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.8em; 
+    color: #333; 
+    margin-bottom: 15px; 
+    font-weight: 600; 
+    text-align: left; 
+    width: 100%; 
+}
+
+.feature-card .card-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1em; 
+    color: #666; 
+    margin-bottom: 25px; 
+    line-height: 1.5; 
+    text-align: left; 
+    width: 100%;
+}
+
+.feature-card .card-button {
+    
+    padding: 12px 25px;
+    background-color: #FFA000; 
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1em; 
+    font-weight: 700; 
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.1s ease;
+    margin-top: auto; 
+    letter-spacing: 0.5px;
+    align-self: flex-start; 
+}
+
+.feature-card .card-button:hover {
+    background-color: #E68A00;
+    transform: translateY(-2px); 
+}
+
+.feature-card .card-button:active {
+    transform: translateY(0); 
+}
+
+
+
+@media (max-width: 800px) {
+    .card-wrapper {
+        flex-direction: column; 
+        align-items: center; 
+        gap: 30px; 
+    }
+
+    .feature-card {
+        max-width: 400px; 
+        width: 90%; 
+    }
+}
+
+@media (max-width: 480px) {
+    .signup-form-card,
+    .feature-card {
+        padding: 25px;
+    }
+
+    .feature-card .card-title {
+        font-size: 1.6em;
+    }
+    .feature-card .card-description {
+        font-size: 0.95em;
+    }
+}
