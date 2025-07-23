@@ -21,10 +21,6 @@ use HasFactory,softDeletes;
         'surprise_mode' => 'boolean',
     ];
 
-    public function media(): HasMany
-    {
-        return $this->hasMany(Media::class);
-    }
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);

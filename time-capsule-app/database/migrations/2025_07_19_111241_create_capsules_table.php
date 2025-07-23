@@ -26,18 +26,13 @@ return new class extends Migration
             $table->string('cover_image')->nullable();
             $table->string('privacy', 20)->default('private')->index();
             $table->string('country');
+            $table->string("media_url")->nullable();
             $table->boolean('surprise_mode');
             $table->softDeletes();
             $table->timestamps();
         });
 
-        Schema::create('media', function (Blueprint $table){
-            $table->id();
-            $table->unsignedBigInteger("capsule_id");
-            $table->string("media_type");
-            $table->string("media_url");
-            $table->timestamps();
-        });
+        
 
         
     }
@@ -48,5 +43,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('capsules');
+       
+
     }
 };

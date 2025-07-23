@@ -28,14 +28,14 @@ class AuthService
 
     static function register(Request $request){
         $request->validate([
-            'name' => 'required|string|max:255',
+            'fullName' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
         ]);
 
         
         $user = new User;
-        $user-> name = $request->name;
+        $user-> fullName = $request->fullName;
         $user-> email = $request->email;
         $user-> password = Hash::make($request->password);
         $user->save();

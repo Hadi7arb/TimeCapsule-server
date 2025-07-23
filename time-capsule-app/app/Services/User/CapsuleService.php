@@ -37,6 +37,7 @@ class CapsuleService
             'color' => 'required|string|max:50',
             'cover_image' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
             'privacy' => ['required' , 'string' , Rule::in($privacies)],
+            'media_url' => 'nullable|file|mimes:jpg,jpeg,png,mp3,mp4|max:20240',
             'is_revealed' => 'boolean',
             'reveal_date' => 'required|date|after_or_equal:now',
             'media' => 'nullable|file|mimes:jpg,jpeg,png|max:2024',
@@ -53,6 +54,7 @@ class CapsuleService
         $capsule->surprise_mode = $request->surprise_mode;
         $capsule->is_revealed = Carbon::parse($request->reveal_date)->isPast();
         $capsule->reveal_date = $request->reveal_date;
+        $capsule->media_url = $request ->media_url;
         $capsule->ip_address = $userIp;
         $capsule->latitude = $location->latitude;
         $capsule->longitude = $location->longitude;
@@ -87,7 +89,4 @@ class CapsuleService
             return $capsules;
         }
 
-    
-    
-    
 } 

@@ -13,10 +13,13 @@ class CapsuleFactory extends Factory
 
     public function definition()
     {
+
+        $type = $this->faker->randomElement(['image', 'video', 'audio', 'pdf']);
+
         return [
             'user_id' => User::factory(),
-            'title' => $this->faker->sentence(rand(3, 7)),
-            'message' => $this->faker->paragraph(rand(3, 8)),
+            'title' => $this->faker->realText(40),
+            'message' => $this->faker->sentences(2, true),
             'reveal_date' => $this->faker->dateTimeBetween('-1 month', '+5 years'),
             'mood' => $this->faker->randomElement(['happy', 'sad', 'excited', 'calm', 'angry', 'thoughtful', 'playful']),
             'latitude' => $this->faker->latitude(30, 40),
@@ -24,8 +27,13 @@ class CapsuleFactory extends Factory
             'ip_address' => $this->faker->ipv4(),
             'is_revealed' => $this->faker->boolean(20),
             'color' => $this->faker->hexColor(),
+            'media_url' => match ($type) {
+                'image' => $this->faker->imageUrl(640, 480, 'nature', true),
+                'audio' => 'https://example.com/media/audio-' . $this->faker->uuid . '.mp3',
+                default => 'https://example.com/media/default-media.txt',
+            },
             'cover_image' => $this->faker->boolean(50) ? $this->faker->imageUrl(640, 480, 'nature', true) : null,
-            'privacy' => $this->faker->randomElement(['private', 'public', 'friends_only']),
+            'privacy' => $this->faker->randomElement(['private', 'public']),
             'country' => $this->faker->country(),
             'surprise_mode' => $this->faker->boolean(),
         ];
