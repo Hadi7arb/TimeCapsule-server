@@ -24,4 +24,9 @@ class CapsuleController extends Controller
         $capsule = CapsuleService::addOrUpdateCapsule($request, $capsule);
         return $this->responseJSON($capsule);
     }
+
+    function filterBy(Request $request){
+        $capsule = CapsuleService::filterBy($request);
+        return $this->responseJSON($capsule);
+    }
 }

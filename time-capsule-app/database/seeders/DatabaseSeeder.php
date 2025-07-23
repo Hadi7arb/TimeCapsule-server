@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\Capsule;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +16,9 @@ class DatabaseSeeder extends Seeder
     {
         User::factory(10)->create();
 
-        // User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        Capsule::factory()->count(50)->create();
+        Capsule::factory()->count(5)->revealed()->create();
+        Capsule::factory()->count(10)->private()->create();
+        
     }
 }

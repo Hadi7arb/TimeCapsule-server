@@ -23,10 +23,6 @@ class CapsuleService
     }
 
     static function addOrUpdateCapsule(Request $request){
-
-        
-
-
         $moods = self::Moods;
         $privacies = self::Privacies;
 
@@ -64,6 +60,32 @@ class CapsuleService
         $capsule->save();
         return $capsule;
     }
+
+    static function filterBy(Request $request)
+        {
+            
+            $query = Capsule::query();
+
+            $query->when($request->has('mood'), function ($q) use ($request) {
+                $q->where('mood', $request->input('mood'));
+            });
+
+            $query->when($request->has('country'), function ($q) use ($request) {
+                $q->where('country', $request->input('country'));
+            });
+
+            $query->when($request->has(['start_date', 'end_date']), function ($q) use ($request) {
+                $startDate = $request->input('start_date');
+                $endDate = $request->input('end_date');
+                if (strtotime($startDate) && strtotime($endDate)) {
+                    $q->whereBetween('reveal_date', [$startDate, $endDate]);
+                }
+            });
+
+            $capsules = $query->get();
+
+            return $capsules;
+        }
 
     
     
